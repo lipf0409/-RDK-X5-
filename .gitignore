@@ -21,3 +21,4 @@ maps/
 voice_assistant/config.yaml
 *.env
 *.secret
+diagrams/
