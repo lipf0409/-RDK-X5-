@@ -1,0 +1,14 @@
+[Unit]
+Description=UCar Nodes - Camera + Detection + Voice
+After=network.target qt_monitor.service
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/sunrise/ucar_01/start_all.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

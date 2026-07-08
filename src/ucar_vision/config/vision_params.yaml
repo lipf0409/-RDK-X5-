@@ -1,0 +1,65 @@
+# ═══════════════════════════════════════════════════════════════
+# 视觉监护系统参数配置
+# 适用于: RDK X5 + MIPI双目深度摄像头 + M260C USB音频 + GPIO LED
+# ═══════════════════════════════════════════════════════════════
+
+/**:
+  ros__parameters:
+
+    # ── 订阅话题配置 (已适配 hobot_stereonet + mipi_cam) ──
+    # 注意: 地平线 stereonet 把深度发在 compresseddepth 上 (sensor_msgs/CompressedImage)
+    #       rectified_image 发在 rectified_image 上 (sensor_msgs/Image nv12)
+    detection_topic: "/person_detections"
+    # ★ stereonet 深度数据只发在 compresseddepth (PNG编码, 352x640 uint16)
+    #    关键: Python节点不要注入 hobot_shm 环境变量, 否则收不到
+    depth_topic: "/StereoNetNode/stereonet_compresseddepth"
+    depth_is_compressed: true        # true=CompressedImage, false=raw Image
+    camera_info_topic: "/StereoNetNode/camera_info"
+    color_topic: "/StereoNetNode/rectified_image"
+
+    # ── 深度图格式 ──
+    depth_is_float: true
+
+    # ── 相机安装参数 ──
+    camera_height: 0.20
+    camera_pitch_deg: 8.0
+
+    # ── 跌倒检测参数 ──
+    head_height_threshold: 0.45
+    aspect_ratio_threshold: 1.15
+    fall_duration_threshold: 1.2
+    fall_cooldown: 5.0
+
+    # ── 深度图参数 ──
+    depth_roi_size: 7
+    depth_min_valid: 300
+    depth_max_valid: 8000
+
+    # ── 卡尔曼滤波 ──
+    kf_process_noise: 0.01
+    kf_measure_noise: 0.05
+
+    # ── 存证 ──
+    save_snapshots: true
+    snapshot_dir: "/home/sunrise/snapshots"
+
+    # ── 调试 ──
+    publish_debug_image: true
+
+    # ── LED灯光报警 (RDK X5 GPIO 直驱) ──
+    led_gpio: 23
+    led_active_high: true
+    led_blink_on_alarm: true
+    led_blink_interval: 0.3
+
+    # ── USB音频报警 (讯飞M260C USB声卡) ──
+    audio_enabled: true
+    audio_device: "default"
+    sounds_dir: "/home/sunrise/ucar_01/sounds"
+
+    # ── 报警行为 ──
+    auto_stop_on_alarm: true
+    alarm_cooldown: 8.0
+
+    # ── 模拟模式 (无硬件时调试用) ──
+    sim_mode: false

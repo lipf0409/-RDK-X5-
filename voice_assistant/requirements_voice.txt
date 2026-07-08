@@ -1,0 +1,42 @@
+# ============================================================================
+# 语音助手 Python 依赖
+# ============================================================================
+# 安装: pip install -r requirements.txt
+#
+# 所有依赖均为跨平台 (Windows / Linux / RDK X5)
+# ============================================================================
+
+# --- 核心依赖 (必须) ---
+pyserial>=3.5          # 串口通信 (M260C 唤醒引擎)
+pyaudio>=0.2.13        # USB 音频采集
+pygame>=2.5            # 音频播放 (跨平台 MP3/WAV)
+
+# --- ASR 语音识别 (至少选一个) ---
+openai>=1.55.0         # OpenAI Whisper API (推荐)
+
+# --- LLM 大模型对话 (至少选一个) ---
+ollama>=0.4.0          # 本地 Ollama 模型
+
+# --- TTS 语音合成 (至少选一个) ---
+edge-tts>=6.1.0        # Edge TTS (免费，推荐)
+
+# --- 可选的 TTS (离线) ---
+# pyttsx3>=2.97         # 离线 TTS (Windows 自带语音)
+
+# --- 音频处理 (推荐) ---
+sounddevice>=0.4.6     # 高质量音频采集/播放
+soundfile>=0.12.0      # WAV 文件读写
+numpy>=1.24.0          # 音频信号处理 / 重采样
+
+# --- 讯飞 ASR (推荐，免费 500次/天) ---
+websocket-client>=1.6   # 讯飞语音听写 WebSocket
+
+# --- 本地音频播放 (预录制 WAV/MP3) ---
+playsound>=1.3.0        # 简单音频播放 (run_car.py 兼容)
+
+# --- YAML 配置支持 (推荐) ---
+pyyaml>=6.0            # 读取 config.yaml
+
+# --- ROS 集成 (仅 Linux / RDK X5，可选) ---
+# rospy                  # ROS Python 客户端 (通过 apt 安装: ros-noetic-rospy)
+# std-msgs               # ROS 标准消息 (通过 apt 安装: ros-noetic-std-msgs)

@@ -1,0 +1,16 @@
+[Unit]
+Description=QT Monitor - Smart Patrol Robot UI
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+Environment=DISPLAY=:0
+ExecStartPre=/bin/sleep 3
+ExecStart=/home/sunrise/ucar_01/qt_monitor/start_qt.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

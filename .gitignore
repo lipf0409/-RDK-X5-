@@ -1,0 +1,23 @@
+# Colcon build artifacts
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.egg
+
+# IDE
+.vscode/
+.idea/
+
+# Maps
+maps/
+
+# Secrets (API keys, tokens)
+voice_assistant/config.yaml
+*.env
+*.secret

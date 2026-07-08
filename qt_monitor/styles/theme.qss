@@ -1,0 +1,356 @@
+/* ═══════════════════════════════════════════════════════════════
+   Smart Alarm Monitor Robot — QSS Theme (7-inch screen optimized)
+   Color palette:
+     - Primary: Tech Orange (#FF7F00)
+     - Background: White (#FFFFFF) with light gray zones (#F5F6F8, #EEF0F2)
+     - Sidebar: Deep Navy (#16213E)
+     - Display panels: Dark (#0D1117, #1A1A2E)
+     - Status: Green (#22C55E), Red (#DC2626), Amber (#F59E0B)
+     - Borders: (#E2E6EA), (#D0D5DD)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Global ──────────────────────────────────────────────── */
+QWidget {
+    background-color: #FFFFFF;
+    color: #2D3436;
+    font-family: "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+    font-size: 17px;
+}
+
+/* ── Main Window ────────────────────────────────────────── */
+QMainWindow {
+    background-color: #EEF0F2;
+    border: none;
+}
+
+/* ── Left Navigation Bar ─────────────────────────────────── */
+#leftNavBar {
+    background-color: #16213E;
+    border-right: 1px solid #1F3060;
+    min-width: 60px;
+    max-width: 60px;
+}
+
+#leftNavBar QPushButton {
+    background-color: transparent;
+    color: #8A9BB5;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 3px;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+}
+
+#leftNavBar QPushButton:hover {
+    background-color: #1F3060;
+    color: #D0D8E8;
+}
+
+#leftNavBar QPushButton:checked {
+    background-color: #FF7F00;
+    color: #FFFFFF;
+}
+
+#leftNavBar QPushButton:pressed {
+    background-color: #E07000;
+}
+
+#navLogo {
+    background-color: #FF7F00;
+    color: #FFFFFF;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 4px;
+    min-width: 34px;
+    max-width: 34px;
+    min-height: 34px;
+    max-height: 34px;
+    border: none;
+}
+
+/* ── Top Status Bar ─────────────────────────────────────── */
+#statusBar {
+    background-color: #F8F9FA;
+    border-bottom: 2px solid #E2E6EA;
+    min-height: 40px;
+    max-height: 40px;
+}
+
+#statusBar QLabel {
+    font-size: 16px;
+    color: #4A5568;
+    background: transparent;
+}
+
+#appTitle {
+    font-size: 18px;
+    font-weight: 700;
+    color: #16213E;
+    background: transparent;
+}
+
+/* ── Indicator Lights (larger, with ring) ───────────────── */
+#indicatorNormal QLabel,
+#indicatorFall QLabel,
+#indicatorFire QLabel {
+    background-color: #CCCCCC;
+    border: 2px solid #BBBBBB;
+    border-radius: 7px;
+    min-width: 14px;
+    max-width: 14px;
+    min-height: 14px;
+    max-height: 14px;
+}
+
+#indicatorNormal QLabel[active="true"] {
+    background-color: #22C55E;
+    border-color: #16A34A;
+}
+
+#indicatorFall QLabel[active="true"] {
+    background-color: #DC2626;
+    border-color: #B91C1C;
+}
+
+#indicatorFire QLabel[active="true"] {
+    background-color: #F59E0B;
+    border-color: #D97706;
+}
+
+/* ── Section Headers ────────────────────────────────────── */
+.sectionHeader {
+    padding: 6px 12px;
+    border-bottom: 1px solid #E2E6EA;
+    font-size: 15px;
+    font-weight: 600;
+    color: #16213E;
+    background-color: #F8F9FA;
+}
+
+/* ── Video / Display Panels ──────────────────────────────── */
+.displayPanel {
+    background-color: #1A1A2E;
+    border: 2px solid #2D3748;
+    border-radius: 4px;
+}
+
+.displayPanel QLabel {
+    background-color: transparent;
+    color: #AAAAAA;
+    font-size: 15px;
+}
+
+/* ── LIDAR / SLAM Display ────────────────────────────────── */
+#slamView {
+    background-color: #0A0E17;
+    border: 2px solid #2A3348;
+    border-radius: 4px;
+}
+
+#slamView QLabel {
+    color: #8B949E;
+    font-size: 14px;
+    background: transparent;
+}
+
+/* ── System Status Panel ─────────────────────────────────── */
+#systemPanel {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E6EA;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+#systemPanel QLabel {
+    font-size: 16px;
+    color: #4A5568;
+    background: transparent;
+}
+
+#systemPanel .paramLabel {
+    font-size: 15px;
+    color: #718096;
+}
+
+#systemPanel .paramValue {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FF7F00;
+}
+
+/* ── Hardware Status Labels ──────────────────────────────── */
+.hwStatusConnected {
+    color: #16A34A;
+    font-weight: 600;
+    background-color: #F0FDF4;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.hwStatusDisconnected {
+    color: #94A3B8;
+    background-color: #F1F5F9;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.hwStatusError {
+    color: #DC2626;
+    font-weight: 600;
+    background-color: #FEF2F2;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* ── D-Pad Control ───────────────────────────────────────── */
+#dpadWidget QPushButton {
+    background-color: #F1F5F9;
+    border: 1px solid #D0D5DD;
+    border-radius: 6px;
+    min-width: 52px;
+    max-width: 52px;
+    min-height: 52px;
+    max-height: 52px;
+    font-size: 20px;
+    color: #94A3B8;
+}
+
+#dpadWidget QPushButton#btnStop {
+    background-color: #FFF7ED;
+    border: 2px solid #FF7F00;
+    color: #FF7F00;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 6px;
+}
+
+#dpadWidget QPushButton:disabled {
+    background-color: #F8FAFC;
+    color: #CBD5E1;
+    border: 1px solid #E2E6EA;
+}
+
+/* ── Test Buttons ────────────────────────────────────────── */
+.testButton {
+    background-color: #FFF7ED;
+    color: #FF7F00;
+    border: 1px solid #FFB080;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.testButton:disabled {
+    background-color: #F8FAFC;
+    color: #CBD5E1;
+    border: 1px solid #E2E6EA;
+}
+
+/* ── Sliders ─────────────────────────────────────────────── */
+QSlider::groove:horizontal {
+    background: #E2E6EA;
+    height: 6px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #FF7F00;
+    width: 18px;
+    height: 18px;
+    margin: -6px 0;
+    border-radius: 9px;
+    border: 2px solid #FFFFFF;
+}
+
+QSlider::handle:horizontal:disabled {
+    background: #CBD5E1;
+    border: 2px solid #E2E6EA;
+}
+
+QSlider::sub-page:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #FFB366, stop:1 #FF7F00);
+    border-radius: 3px;
+}
+
+/* ── Event Log ──────────────────────────────────────────── */
+#logPanel {
+    background-color: #F8F9FA;
+    border-top: 2px solid #E2E6EA;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 14px;
+}
+
+#logPanel QTextEdit {
+    background-color: #FAFBFC;
+    color: #4A5568;
+    border: none;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 14px;
+    padding: 5px 8px;
+}
+
+/* ── Scroll Bars ────────────────────────────────────────── */
+QScrollBar:vertical {
+    background: transparent;
+    width: 8px;
+    margin: 0;
+}
+
+QScrollBar::handle:vertical {
+    background: #CBD5E1;
+    min-height: 24px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #94A3B8;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* ── Splitter ───────────────────────────────────────────── */
+QSplitter::handle {
+    background-color: #E2E6EA;
+    width: 3px;
+    height: 3px;
+}
+
+QSplitter::handle:hover {
+    background-color: #FF7F00;
+}
+
+/* ── Group Box ──────────────────────────────────────────── */
+QGroupBox {
+    border: 1px solid #E2E6EA;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 18px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #16213E;
+    background-color: #FFFFFF;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 6px;
+    color: #16213E;
+}
+
+/* ── Tooltips ───────────────────────────────────────────── */
+QToolTip {
+    background-color: #16213E;
+    color: #FFFFFF;
+    border: 1px solid #1F3060;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 15px;
+}

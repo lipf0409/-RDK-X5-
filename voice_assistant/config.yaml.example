@@ -1,0 +1,103 @@
+# ============================================================================
+# 语音助手配置文件 (示例)
+# ============================================================================
+# 复制此文件为 config.yaml 并填入真实密钥:
+#   cp config.yaml.example config.yaml
+# ============================================================================
+
+# --- 串口配置 (M260C 唤醒引擎) ---
+serial:
+  port: "COM11"           # Windows: COM11; Linux/RDK X5: /dev/ttyUSB0
+  baudrate: 115200
+
+# --- 唤醒设置 ---
+wake:
+  word: "小飞小飞"
+  score_threshold: 500
+  cooldown: 3.0
+
+# --- 唤醒后端选择 ---
+wake_backend:
+  mode: "audio"           # "audio" (推荐) | "serial" | "auto"
+
+# --- AIUI SDK 设置 (讯飞 AIUI 开放平台 https://aiui.xfyun.cn/) ---
+aiui:
+  appid: "YOUR_AIUI_APPID"
+  key: "YOUR_AIUI_KEY"
+  api_secret: "YOUR_AIUI_API_SECRET"
+  scene: "main_box"
+  wakeup_mode: "vtn"
+  mic_type: "mic1"
+  res_path: "assets/vtn/vtn.ini"
+
+# --- ASR 语音识别 ---
+asr:
+  backend: "iflytek"
+  whisper:
+    api_key: "${OPENAI_API_KEY}"
+    base_url: "https://api.openai.com/v1"
+    model: "whisper-1"
+  iflytek:
+    app_id: "YOUR_IFLYTEK_APP_ID"
+    api_key: "YOUR_IFLYTEK_API_KEY"
+    api_secret: "YOUR_IFLYTEK_API_SECRET"
+
+# --- LLM 大模型 ---
+llm:
+  backend: "openai"
+  system_prompt: |
+    你叫小飞，是一个家庭智能报警监护机器人。
+    你的核心能力：
+    1. 巡逻监护：在家里自主巡逻，通过双目深度摄像头检测人员跌倒和火警
+    2. 智能报警：发现老人跌倒或火情时自动报警、拍照存证、语音播报
+    3. 语音交互：通过唤醒词"小飞小飞"激活，支持自然语言对话
+    4. 远程监控：可通过QT界面实时查看RGB/深度图像和SLAM地图
+
+    你的性格：亲切、可靠、专业，像家人的健康管家。
+    回答风格：简洁口语化，每次2-3句话，适合语音播放。
+  ollama:
+    host: "http://localhost:11434"
+    model: "qwen2:latest"
+  openai:
+    api_key: "YOUR_OPENAI_API_KEY"   # 或环境变量: ${OPENAI_API_KEY}
+    base_url: "https://api.deepseek.com"
+    model: "deepseek-chat"
+
+# --- TTS 语音合成 ---
+tts:
+  backend: "iflytek"
+  edge:
+    voice: "zh-CN-XiaoxiaoNeural"
+  pyttsx3:
+    rate: 180
+
+# --- 音频设置 ---
+audio:
+  input_device: null
+  output_device: null
+  sample_rate: 16000
+  channels: 1
+  chunk_size: 1024
+  record_seconds_max: 8
+  silence_threshold: 500
+  silence_seconds: 1.5
+
+# --- ROS 集成 ---
+ros:
+  enabled: false
+  master_uri: ""
+  angle_topic: "/angle"
+  question_topic: "/question"
+  answer_topic: "/answer"
+
+# --- 本地音频回退 ---
+local_audio:
+  enabled: true
+  resources_dir: "audio_resources"
+  wake_sound: "audio_resources/wake_ding.wav"
+
+# --- 其他 ---
+misc:
+  save_audio: false
+  temp_dir: null
+  debug: false
